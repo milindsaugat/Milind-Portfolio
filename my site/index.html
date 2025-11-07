@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="icon" href="checklist (1).png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Asap:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mukta:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+:root {
+    --primary-color:  hsl(7, 85%, 31%);
+    --background-color: #000000;
+    --text-color: #FFFFFF;
+}
+
+
+
+body {
+    margin: 0;
+    font-family: 'helvatica', sans-serif;
+    background: linear-gradient(135deg, hsl(7, 85%, 31%) 35%, #000000 5%);
+    color: var(--text-color);
+}
+/* .home-section::before {
+    content: "WEB DEVELOPER";
+    position: absolute;
+    font-family:' archivo black' sans-serif;
+    top: 50%;
+    left: 35%;
+    transform: translate(-5%, -50%);
+    font-size: 7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.117);
+    z-index: -1;
+    white-space: nowrap;
+} */
+
+.navbar {
+    position: fixed;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 1000;
+}
+
+.nav-icon {
+    position: relative;
+    background-color: var(--primary-color);
+    padding: 1.2rem;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--background-color);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+
+/* Hover Text Label */
+.nav-icon::before {
+    content: attr(title);
+    position: absolute;
+    right: calc(100% + 10px);
+    background: var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 23px;
+    color: var(--background-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+    visibility: hidden;
+    color: var(--text-color)
+}
+
+.nav-icon:hover::before,
+.nav-icon:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.nav-icon:hover {
+    transform: scale(1.1);
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
+
+
+/* Main Section */
+.home-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    position: relative;
+    padding: 0 80px;
+}
+
+.image-container {
+    flex: 1;
+max-width: 400px;
+border-radius: 20px;
+overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Content Section */
+.content {
+    flex: 1;
+    max-width: 55%;
+    padding: 0px 0px;
+}
+
+.content h1 {
+    font-size: 2.7rem;
+    color: var(--primary-color);
+    font-weight: 800;
+
+}
+
+.content h2 {
+    font-size: 2.7rem;
+    font-weight: 900;
+    margin-left: 70px;
+    color: var(--text-color);
+}
+
+.content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    color: #cccccc;
+    margin-left:70px ;
+    max-width: 800px;
+}
+
+/* Button Style */
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 70px;
+}
+
+.btn:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+/* Button hover effect */
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 15px 35px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    width: 100%;
+}
+
+.btn:hover {
+    color: var(--background-color);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .home-section {
+        padding: 0 40px;
+    }
+    
+    .content h1 {
+        font-size: 2.4rem;
+    }
+    
+    .content h2 {
+        font-size: 2.4rem;
+    }
+    
+    .content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .navbar {
+        right: 20px;
+        gap: 20px;
+    }
+    
+    .nav-icon {
+        width: 20px;
+        height: 20px;
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+    
+    .home-section {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        top: auto;
+        left: 0;
+        transform: none;
+        flex-direction: row;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        justify-content: center;
+        gap: 30px;
+        z-index: 1000;
+    }
+    
+    .nav-icon {
+        width: 25px;
+        height: 25px;
+        padding: 1.2rem;
+        font-size: 1.4rem;
+    }
+    
+    .nav-icon::before {
+        display: none;
+    }
+    
+    .home-section {
+        flex-direction: column;
+        padding: 30px 20px 120px 20px;
+        text-align: center;
+        gap: 40px;
+        min-height: calc(100vh - 120px);
+        justify-content: center;
+    }
+    
+    .image-container {
+        max-width: 300px;
+        margin: 0 auto;
+        order: 1;
+    }
+    
+    .content {
+        max-width: 100%;
+        padding: 0;
+        order: 2;
+    }
+    
+    .content h1 {
+        font-size: 2rem;
+        margin-left: 0;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .content h2 {
+        font-size: 2rem;
+        margin-left: 0;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .content p {
+        font-size: 1rem;
+        margin-left: 0;
+        text-align: center;
+        padding: 0 10px;
+        max-width: 100%;
+        line-height: 1.6;
+    }
+    
+    .btn {
+        margin-left: 0;
+        display: inline-block;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding: 15px;
+        gap: 20px;
+    }
+    
+    .nav-icon {
+        width: 22px;
+        height: 22px;
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+    
+    .home-section {
+        padding: 20px 15px 100px 15px;
+        gap: 30px;
+    }
+    
+    .image-container {
+        max-width: 250px;
+    }
+    
+    .content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .content p {
+        font-size: 0.9rem;
+        padding: 0 5px;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .navbar {
+        gap: 15px;
+        padding: 12px;
+    }
+    
+    .nav-icon {
+        width: 20px;
+        height: 20px;
+        padding: 0.9rem;
+        font-size: 1.1rem;
+    }
+    
+    .content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .content h2 {
+        font-size: 1.6rem;
+    }
+    
+    .image-container {
+        max-width: 220px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .navbar {
+        gap: 12px;
+        padding: 10px;
+    }
+    
+    .nav-icon {
+        width: 18px;
+        height: 18px;
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+    
+    .content h1 {
+        font-size: 1.4rem;
+    }
+    
+    .content h2 {
+        font-size: 1.4rem;
+    }
+    
+    .content p {
+        font-size: 0.8rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .image-container {
+        max-width: 200px;
+    }
+}
+
+
+.blog-card, .project-card {
+    background: var(--bg-secondary) !important;
+    transition: all 0.3s ease;
+}
+
+.blog-excerpt {
+    color: var(--text-secondary) !important;
+}
+
+.blog-meta {
+    color: var(--text-secondary) !important;
+    border-top-color: var(--border-color) !important;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .theme-controls {
+        top: auto;
+        bottom: 100px;
+        left: 10px;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+
+    .control-btn::before {
+        display: none;
+    }
+}
+</style>
+
+<body>
+<!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html" class="nav-icon" title="Home">
+            <i class="ri-home-4-fill"></i>
+        </a>
+        <a href="about.html" class="nav-icon" title="About">
+            <i class="ri-user-3-fill"></i>
+        </a>
+        <a href="Work.html" class="nav-icon" title="Work">
+            <i class="ri-briefcase-4-fill"></i>
+        </a>
+        <a href="Get In Touch.html" class="nav-icon" title="Get in Touch">
+            <i class="ri-mail-fill"></i>
+        </a>
+        <a href="My Blog.html" class="nav-icon" title="My Blog">
+            <i class="ri-ball-pen-fill"></i>
+        </a>
+    </div>
+
+    <!-- Home Section -->
+    <section class="home-section" id="home">
+        <div class="image-container">
+            <img src="i.jpg" alt="Profile Image">
+        </div>
+        <div class="content">
+            <h1>— I'M MILIND RATAN SAUGAT</h1>
+            <h2>WEB DEVELOPER</h2>
+            <p>
+                Hello, my name is Milind Ratan Saugat, and I am from Agra.<br>
+                I am a web developer, graphic designer, and digital marketing specialist.<br>
+                With a blend of technical expertise and creativity, I craft digital solutions<br>
+                that help businesses reach new heights. Alongside this, my strong communication<br>
+                skills and leadership qualities enable me to collaborate effectively with teams<br>
+                and drive projects toward success...
+            </p>
+            <a href="about.html" class="btn">More About Me</a>
+        </div>
+    </section>
+</body>
+</html>

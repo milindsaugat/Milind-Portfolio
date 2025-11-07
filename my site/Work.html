@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="icon" href="checklist (1).png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto&family=Mukta&family=Asap&display=swap" rel="stylesheet">
+    <style>
+        /* Previous styles remain same */
+        /* Add new styles for project name overlay */
+        .project-name-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-family: 'Asap', sans-serif;
+            font-size: 1.1rem;
+            z-index: 3;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-name-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Rest of the previous styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            z-index: 1000;
+        }
+
+        .nav-icon {
+            position: relative;
+            background-color:  hsl(7, 85%, 31%);
+            padding: 1.2rem;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #000;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+        }
+
+        .nav-icon::before {
+            content: attr(title);
+            position: absolute;
+            right: calc(100% + 10px);
+            background:  #921c0c;
+            padding: 8px 15px;
+            border-radius: 23px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            pointer-events: none;
+            visibility: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .nav-icon:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+           
+            
+        }
+
+        .nav-icon:hover {
+            transform: scale(1.1);
+            background-color:  white;
+            color: hsl(7, 85%, 31%);
+          
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            font-family: 'Archivo Black', sans-serif;
+        }
+
+        .section-title .highlight {
+            color: #921c0c;
+        }
+
+        .section-title.about-title::before {
+            content: "PROJECTS";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            z-index: -1;
+            font-family: 'Archivo Black', sans-serif;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            position: relative;
+            height: 300px;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(10px);
+        }
+
+        .project-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-cover {
+            transform: rotateX(90deg);
+        }
+
+        .project-title {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-family: 'Asap', sans-serif;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .project-card:hover .project-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .slider {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slider-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .slider-images img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: #FFA000;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+            background: #FFA000;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: #FFB800;
+        }
+        @media screen and (max-width: 1200px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .projects-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            .navbar {
+                right: 20px;
+            }
+            
+            .nav-icon {
+                width: 50px;
+                height: 50px;
+                padding: 0.8rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                top: auto;
+                transform: none;
+                flex-direction: row;
+                width: 100%;
+                background: rgba(17, 17, 17, 0.95);
+                padding: 15px;
+                justify-content: space-around;
+                gap: 10px;
+                z-index: 1000;
+            }
+            
+            .nav-icon::before {
+                display: none;
+            }
+            
+            .project-card {
+                height: 250px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+            
+            .slider {
+                height: 300px;
+            }
+            
+            body {
+                padding-bottom: 80px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 15px;
+            }
+            
+            .project-card {
+                height: 220px;
+            }
+            
+            .slider {
+                height: 250px;
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .nav-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .project-card {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+  
+        <div class="navbar">
+            <a href="index.html" class="nav-icon" title="Home">
+                <i class="ri-home-4-fill"></i>
+            </a>
+            <a href="about.html" class="nav-icon" title="About">
+                <i class="ri-user-3-fill"></i>
+            </a>
+            <a href="Work.html" class="nav-icon" title="Work">
+                <i class="ri-briefcase-4-fill"></i>
+            </a>
+            <a href="Get In Touch.html" class="nav-icon" title="Get in Touch">
+                <i class="ri-mail-fill"></i>
+            </a>
+            <a href="my blog.html" class="nav-icon" title="My Blog">
+                <i class="ri-ball-pen-fill"></i>
+            </a>
+        </div>
+        
+        <h1 class="section-title about-title">MY<span class="highlight">WORK</span></h1>
+        <div class="projects-grid">
+            <!-- Projects will be generated here -->
+        </div>
+
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="slider">
+                    <div class="slider-images"></div>
+                    <div class="slider-nav"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Project data remains same
+        const projects = [
+            {
+                name: "Apple Clone",
+                color: '#2196f3',
+                images: [
+                    "work assets/Appleclone img1.png",
+                    "work assets/Appleclone img2.png",
+                    "work assets/Appleclone img3.png",
+                    "work assets/Appleclone img4.png",
+                    "work assets/Appleclone img5.png"
+                ]
+            },
+            {
+                name: "Ride Fusion",
+                color: '#4caf50',
+                images: [
+                    "work assets/ridefusion img1.png",
+                    "work assets/ridefusion img2.png",
+                    "work assets/ridefusion img3.png",
+                    "work assets/ridefusion img4.png",
+                    "work assets/ridefusion img5.png"
+                ]
+            },
+            {
+                name: "Safar",
+                color: '#f44336',
+                images: [
+                    "work assets/safar img1.png",
+                    "work assets/safar img 2.png",
+                    "work assets/safar img3.png",
+                    "work assets/safar img 4.png",
+                    "work assets/safar img 5.png"
+                ]
+            },
+            {
+                name: "Sneaker",
+                color: '#9c27b0',
+                images: [
+                    "work assets/sneaker img1.png",
+                    "work assets/sneaker img2.png",
+                    "work assets/sneaker img3.png",
+                    "work assets/sneaker img4.png",
+                    "work assets/sneaker img5.png"
+                ]
+            }
+        ];
+
+        // Fill remaining projects array to make 9 total
+        while (projects.length < 9) {
+            projects.push({
+                name: `Project ${projects.length + 1}`,
+                color: '#607d8b',
+                images: Array(5).fill('/api/placeholder/800/400')
+            });
+        }
+
+        // Generate project cards with name overlay
+        const projectsGrid = document.querySelector('.projects-grid');
+        
+        projects.forEach((project, index) => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            // Add thumbnail image
+            const image = document.createElement('img');
+            image.src = project.images[0];
+            image.className = 'project-image';
+            card.appendChild(image);
+            
+            // Add project name overlay
+            const nameOverlay = document.createElement('div');
+            nameOverlay.className = 'project-name-overlay';
+            nameOverlay.textContent = project.name;
+            card.appendChild(nameOverlay);
+            
+            const cover = document.createElement('div');
+            cover.className = 'project-cover';
+            cover.style.background = project.color;
+            
+            const title = document.createElement('div');
+            title.className = 'project-title';
+            title.textContent = project.name;
+            
+            card.appendChild(cover);
+            card.appendChild(title);
+            
+            // Add double-click event listener
+            card.addEventListener('dblclick', () => openModal(index));
+            
+            projectsGrid.appendChild(card);
+        });
+
+        // Modal functionality remains same
+        const modal = document.querySelector('.modal');
+        const closeModal = document.querySelector('.close-modal');
+        const sliderImages = document.querySelector('.slider-images');
+        const sliderNav = document.querySelector('.slider-nav');
+        let currentSlide = 0;
+
+        function openModal(projectIndex) {
+            sliderImages.innerHTML = '';
+            sliderNav.innerHTML = '';
+            currentSlide = 0;
+            
+            projects[projectIndex].images.forEach((imgSrc, i) => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                sliderImages.appendChild(img);
+                
+                const dot = document.createElement('div');
+                dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToSlide(i));
+                sliderNav.appendChild(dot);
+            });
+            
+            modal.style.display = 'block';
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            sliderImages.style.transform = `translateX(-${index * 100}%)`;
+            
+            document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+                dot.className = `slider-dot ${i === index ? 'active' : ''}`;
+            });
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

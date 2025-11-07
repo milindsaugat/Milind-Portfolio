@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get In Touch</title>
+    <link rel="icon" href="checklist (1).png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto&family=Mukta&family=Asap&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Keeping your existing heading style */
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 80px;
+            position: relative;
+            font-family: 'Archivo Black', sans-serif;
+        }
+
+        .section-title .highlight {
+            color:  hsl(7, 85%, 31%);
+        }
+
+        .section-title::before {
+            content: "CONTACT";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            z-index: -1;
+            font-family: 'Archivo Black', sans-serif;
+        }
+
+        /* New minimal contact grid */
+        .contact-grid {
+            display: grid;
+            
+            grid-template-columns: repeat(2, 1fr);
+            gap: 80px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 60px;
+            border-radius: 30px;
+            
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(253, 28, 28, 0.03);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(118, 35, 12, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .info-icon {
+            background-color: hsl(7, 66%, 16%);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color:  rgb(146, 28, 12);
+        }
+
+        .info-text h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color:  hsl(7, 85%, 31%);
+            margin-bottom: 5px;
+            font-family: 'Asap', sans-serif;
+        }
+
+        .info-text p {
+            color: #eeecec;
+            font-size: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: hsl(7, 85%, 31%);
+            text-decoration: none;
+            background:  hsl(7, 66%, 16%);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background:  hsl(7, 41%, 19%);
+            color: #111;
+            transform: translateY(-3px);
+        }
+
+        /* Minimal form styling */
+        .contact-form {
+            background: rgba(255, 5, 5, 0.027);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .form-title {
+            font-size: 22px;
+            margin-bottom: 30px;
+            color:  hsl(7, 85%, 31%);
+            font-family: 'Asap', sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: #ff858505;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: rgba(255, 21, 0, 0.5);
+            outline: none;
+            background: rgba(76, 17, 2, 0.05);
+        }
+
+        textarea.form-input {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background:  hsl(7, 85%, 31%);
+            border: 1px solid rgba(33, 4, 0, 0.3);
+            border-radius: 12px;
+            color:  white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background:  hsl(8, 94%, 13%);
+            color: #fffefe;
+        }
+
+        /* Your existing navbar styles */
+        .navbar {
+            position: fixed;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            z-index: 1000;
+        }
+
+        .nav-icon {
+            position: relative;
+            background-color:  hsl(7, 85%, 31%);
+            padding: 1.2rem;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #000;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+        }
+
+        .nav-icon::before {
+            content: attr(title);
+            position: absolute;
+            right: calc(100% + 10px);
+            background: hsl(7, 85%, 31%);
+            padding: 8px 15px;
+            border-radius: 23px;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .nav-icon:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+            color: #fff;
+        }
+
+        .nav-icon:hover {
+            transform: scale(1.1);
+            background-color:  white;
+            color:  hsl(7, 85%, 31%);
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 28px;
+            }
+
+            .section-title::before {
+                font-size: 60px;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+
+            .form-input {
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .contact-grid {
+                gap: 60px;
+            }
+
+            .info-item {
+                padding: 30px;
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            .container {
+                padding: 30px 15px;
+            }
+            
+            .section-title {
+                font-size: 40px;
+                margin-bottom: 50px;
+            }
+            
+            .section-title::before {
+                font-size: 100px;
+            }
+
+            .contact-grid {
+                max-width: 900px;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .navbar {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                top: auto;
+                left: 0;
+                transform: none;
+                flex-direction: row;
+                justify-content: space-around;
+                background: rgba(17, 17, 17, 0.95);
+                padding: 15px 0;
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+            }
+            
+            .nav-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .nav-icon::before {
+                display: none;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 30px;
+            }
+
+            .container {
+                padding-bottom: 100px; /* Bottom navigation के लिए space */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .section-title::before {
+                font-size: 80px;
+            }
+            
+            .info-item {
+                padding: 15px;
+            }
+            
+            .info-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .social-icons {
+                gap: 10px;
+            }
+            
+            .form-input {
+                padding: 12px 15px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .contact-grid {
+                padding: 20px;
+            }
+            
+            .info-text h3 {
+                font-size: 16px;
+            }
+            
+            .info-text p {
+                font-size: 14px;
+            }
+            
+            .social-icon {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .form-title {
+                font-size: 20px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .section-title::before {
+                font-size: 60px;
+            }
+            
+            .nav-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @supports (padding: env(safe-area-inset-bottom)) {
+            @media screen and (max-width: 992px) {
+                .navbar {
+                    padding-bottom: calc(15px + env(safe-area-inset-bottom));
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <div class="navbar">
+            <a href="index.html" class="nav-icon" title="Home">
+                <i class="ri-home-4-fill"></i>
+            </a>
+            <a href="about.html" class="nav-icon" title="About">
+                <i class="ri-user-3-fill"></i>
+            </a>
+            <a href="Work.html" class="nav-icon" title="Work">
+                <i class="ri-briefcase-4-fill"></i>
+            </a>
+            <a href="Get In Touch.html" class="nav-icon" title="Get in Touch">
+                <i class="ri-mail-fill"></i>
+            </a>
+            <a href="My Blog.html" class="nav-icon" title="My Blog">
+                <i class="ri-ball-pen-fill"></i>
+            </a>
+        </div>
+
+        <h1 class="section-title">GET IN <span class="highlight">TOUCH</span></h1>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="ri-map-pin-2-fill"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>My Location</h3>
+                        <p>Agra, Uttar Pradesh</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="ri-mail-fill"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>My Email</h3>
+                        <p>devmilind12@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="ri-phone-fill"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Call Me</h3>
+                        <p>+919411404446</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="ri-group-fill"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="https://www.instagram.com/_.justmilind._/"class="social-icon"><i class="ri-instagram-fill"></i></a>
+                            <a href="#" class="social-icon"><i class="ri-linkedin-fill"></i></a>
+                            <a href="https://github.com/milindsaugat" class="social-icon"><i class="ri-github-fill"></i></a>
+                            <a href="https://wa.me/+919411404446" class="social-icon"><i class="ri-whatsapp-fill"></i></a>
+                            <a href="#" class="social-icon"><i class="ri-telegram-fill"></i></a>
+                            <a href="#" class="social-icon"><i class="ri-reddit-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2 class="form-title">Send Me your idea</h2>
+                <form action="https://formsubmit.co/devmilind12@gmail.com" method="POST">
+                    <!-- Spam Prevention -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-input" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" class="form-input" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-input" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       // Initialize EmailJS with your public key
+       emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual public key
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+
+    // Send email using EmailJS
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData)
+        .then(function(response) {
+            alert('Message sent successfully!');
+            document.getElementById('contactForm').reset();
+        }, function(error) {
+            alert('Failed to send message. Please try again.');
+        });
+});
+    </script>
+</body>
+</html>
